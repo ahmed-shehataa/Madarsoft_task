@@ -8,6 +8,7 @@ import com.ashehata.madarsoft_task.modules.sign_up.presentation.contract.SignUpV
 import com.ashehata.madarsoft_task.modules.user.domain.model.UserDomainModel
 import com.ashehata.madarsoft_task.modules.user.domain.usecase.SetUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,12 +29,14 @@ class SignUpViewModel @Inject constructor(
     private fun SignUp() {
         setLoading()
         launchCoroutine {
+            // To simulate loading data
+            delay(1500)
             setUserUseCase.execute(
                 UserDomainModel(
                     viewStates?.userName?.text?.value?.trim() ?: "",
-                    viewStates?.userName?.text?.value ?: "",
-                    12,
-                    Gender.MALE
+                    viewStates?.jobTitle?.text?.value?.trim() ?: "",
+                    viewStates?.age?.text?.value?.trim()?.toIntOrNull() ?: 0,
+                    viewStates?.gender?.value ?: Gender.MALE
                 ),
             )
             setDoneLoading()

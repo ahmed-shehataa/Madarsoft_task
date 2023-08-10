@@ -61,7 +61,7 @@ fun SignUpScreenContent(
 
             Image(
                 modifier = Modifier
-                    .size(250.dp)
+                    .size(150.dp)
                     .align(Alignment.CenterHorizontally),
                 imageVector = ImageVector.vectorResource(id = R.drawable.login_placeholder),
                 contentDescription = null

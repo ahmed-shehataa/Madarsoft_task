@@ -9,6 +9,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.ashehata.madarsoft_task.common.presentation.GeneralObservers
+import com.ashehata.madarsoft_task.modules.profile.presentation.composables.ProfileScreen
+import com.ashehata.madarsoft_task.modules.profile.presentation.viewModel.ProfileViewModel
 import com.ashehata.madarsoft_task.modules.sign_up.presentation.composables.SignUpScreen
 import com.ashehata.madarsoft_task.modules.sign_up.presentation.viewModel.SignUpViewModel
 import com.ashehata.madarsoft_task.theme.AppTheme
@@ -35,9 +37,9 @@ class HomeActivity : ComponentActivity() {
                     }
 
                     composable("profile") {
-
+                        val viewModel: ProfileViewModel by viewModels()
+                        ProfileScreen(viewModel, navController)
                     }
-
 
 
                 }
