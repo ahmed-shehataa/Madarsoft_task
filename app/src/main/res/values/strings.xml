@@ -3,4 +3,10 @@
     <string name="empty_lbl" />
     <string name="empty_field">"Empty field "</string>
     <string name="invalid_email">"Invalid Email "</string>
+    <string name="user_name">Name</string>
+    <string name="job_title">Job Title</string>
+    <string name="age">Age</string>
+    <string name="invalid_age">Invalid age</string>
+    <string name="gender">Gender:</string>
+    <string name="sign_up">Sign up</string>
 </resources>

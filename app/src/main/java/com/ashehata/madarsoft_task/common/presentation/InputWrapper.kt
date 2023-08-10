@@ -4,12 +4,13 @@ package com.ashehata.madarsoft_task.common.presentation
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
+import com.ashehata.madarsoft_task.R
+import com.ashehata.madarsoft_task.common.presentation.Validation.validateAge
 import com.ashehata.madarsoft_task.common.presentation.Validation.validateEmail
 import com.ashehata.madarsoft_task.common.presentation.Validation.validateText
-import com.ashehata.madarsoft_task.R
 
 enum class ValidationType {
-    Text, Email, Password
+    Text, Email, Password, Age
 }
 
 data class InputWrapper(
@@ -25,6 +26,7 @@ data class InputWrapper(
         text.value = input
         validationMessageResId = when (validationType) {
             ValidationType.Email -> input.validateEmail().toMessageRes()
+            ValidationType.Age -> input.validateAge().toMessageRes()
             else -> input.validateText().toMessageRes()
         }
         borderColor = if (isValid.value) {
@@ -42,9 +44,11 @@ private fun ValidationMessageType.toMessageRes(): Int {
         is ValidationMessageType.Invalid -> {
             when (this.validationType) {
                 ValidationType.Email -> R.string.invalid_email
+                ValidationType.Age -> R.string.invalid_age
                 else -> R.string.invalid_email
             }
         }
+
         ValidationMessageType.Valid -> R.string.empty_lbl
     }
 }

@@ -19,6 +19,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import com.ashehata.madarsoft_task.R
 import com.ashehata.madarsoft_task.common.presentation.InputWrapper
 import com.ashehata.madarsoft_task.common.presentation.ValidationType
 
@@ -30,7 +31,7 @@ fun InputText(
     inputWrapper: InputWrapper,
     keyboardType: KeyboardType = KeyboardType.Text,
     imeAction: ImeAction = ImeAction.Next,
-    onDone: () -> Unit
+    onDone: () -> Unit = {}
 ) {
 
     val focusManager = LocalFocusManager.current
@@ -113,7 +114,7 @@ fun InputText(
         }
 
         AnimatedVisibility(
-            visible = inputWrapper.isValid.value.not() && inputWrapper.text.value.isNotEmpty(),
+            visible = inputWrapper.isValid.value.not() && inputWrapper.validationMessageResId != R.string.empty_lbl,
             enter = scaleIn() + expandVertically(expandFrom = Alignment.CenterVertically),
             exit = scaleOut() + shrinkVertically(shrinkTowards = Alignment.CenterVertically)
         ) {

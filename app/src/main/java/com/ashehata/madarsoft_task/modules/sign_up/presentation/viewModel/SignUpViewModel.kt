@@ -30,8 +30,8 @@ class SignUpViewModel @Inject constructor(
         launchCoroutine {
             setUserUseCase.execute(
                 UserDomainModel(
-                    viewStates?.email?.text?.value?.trim() ?: "",
-                    viewStates?.email?.text?.value ?: "",
+                    viewStates?.userName?.text?.value?.trim() ?: "",
+                    viewStates?.userName?.text?.value ?: "",
                     12,
                     Gender.MALE
                 ),

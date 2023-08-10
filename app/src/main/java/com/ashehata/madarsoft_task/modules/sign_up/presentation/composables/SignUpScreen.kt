@@ -7,7 +7,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.navOptions
 import com.ashehata.madarsoft_task.common.presentation.GeneralObservers
 import com.ashehata.madarsoft_task.modules.sign_up.presentation.contract.SignUpEvent
 import com.ashehata.madarsoft_task.modules.sign_up.presentation.contract.SignUpState
@@ -18,6 +19,7 @@ import com.ashehata.madarsoft_task.modules.sign_up.presentation.viewModel.SignUp
 @Composable
 fun SignUpScreen(
     viewModel: SignUpViewModel,
+    navController: NavHostController,
 ) {
 
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -27,17 +29,29 @@ fun SignUpScreen(
     }
 
 
-    val email = remember {
-        viewStates.email
+    val userName = remember {
+        viewStates.userName
+    }
+
+    val jobTitle = remember {
+        viewStates.jobTitle
+    }
+
+    val age = remember {
+        viewStates.age
+    }
+
+    val gender = remember {
+        viewStates.gender
     }
 
     val isLoading = remember {
         viewStates.isLoading
     }
 
-    val isButtonEnabled by remember(email.text, email.text) {
+    val isButtonEnabled by remember(userName.text, jobTitle.text, age.text) {
         derivedStateOf {
-            email.isValid.value && email.isValid.value
+            userName.isValid.value && jobTitle.isValid.value && age.isValid.value
         }
     }
 
@@ -53,10 +67,10 @@ fun SignUpScreen(
 
     SignUpScreenContent(
         isLoading = isLoading.value,
-        email = email,
-        jobTitle = email,
-        age = email,
-        gender = email,
+        userName = userName,
+        jobTitle = jobTitle,
+        age = age,
+        gender = gender,
         isButtonEnabled = isButtonEnabled,
         onSignUpClicked = onSignUpClicked
     )
@@ -64,11 +78,11 @@ fun SignUpScreen(
     GeneralObservers<SignUpState, SignUpViewModel>(viewModel = viewModel) {
         when (it) {
             SignUpState.OpenRecipesScreen -> {
-                /*navigator?.navigate(RecipesScreenDestination, navOptions = navOptions {
-                    popUpTo(SignUpScreenDestination.route) {
+                navController.navigate("profile", navOptions = navOptions {
+                    popUpTo("sign_up") {
                         inclusive = true
                     }
-                })*/
+                })
             }
         }
 

@@ -17,6 +17,13 @@ object Validation {
         else ValidationMessageType.Valid
     }
 
+    fun String.validateAge(): ValidationMessageType {
+        val agePattern = Regex("^(0?[1-9]|[1-9][0-9]{1,2})\$")
+        return if (this.isEmpty()) ValidationMessageType.EmptyField
+        else if (this.matches(agePattern).not()) ValidationMessageType.Invalid(ValidationType.Age)
+        else ValidationMessageType.Valid
+    }
+
     fun String.validateText(): ValidationMessageType {
         return if (this.isEmpty()) ValidationMessageType.EmptyField
         else ValidationMessageType.Valid

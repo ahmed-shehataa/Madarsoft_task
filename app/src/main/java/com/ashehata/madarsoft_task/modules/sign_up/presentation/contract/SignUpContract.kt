@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import com.ashehata.madarsoft_task.base.BaseEvent
 import com.ashehata.madarsoft_task.base.BaseState
 import com.ashehata.madarsoft_task.base.BaseViewState
+import com.ashehata.madarsoft_task.common.enums.Gender
 import com.ashehata.madarsoft_task.common.presentation.InputWrapper
 import com.ashehata.madarsoft_task.common.presentation.ValidationType
 
@@ -20,8 +21,8 @@ data class SignUpViewState(
     override val isRefreshing: MutableState<Boolean> = mutableStateOf(false),
     override val isNetworkError: MutableState<Boolean> = mutableStateOf(false),
     override val isLoading: MutableState<Boolean> = mutableStateOf(false),
-    val email: InputWrapper = InputWrapper(validationType = ValidationType.Email),
-    val jobTitle: InputWrapper = InputWrapper(validationType = ValidationType.Password),
-    val age: InputWrapper = InputWrapper(validationType = ValidationType.Password),
-    val gender: InputWrapper = InputWrapper(validationType = ValidationType.Password),
+    val userName: InputWrapper = InputWrapper(validationType = ValidationType.Text),
+    val jobTitle: InputWrapper = InputWrapper(validationType = ValidationType.Text),
+    val age: InputWrapper = InputWrapper(validationType = ValidationType.Age),
+    val gender: MutableState<Gender> = mutableStateOf(Gender.MALE),
 ) : BaseViewState

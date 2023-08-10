@@ -31,7 +31,7 @@ class HomeActivity : ComponentActivity() {
                     }
                     composable("sign_up") {
                         val viewModel: SignUpViewModel by viewModels()
-                        SignUpScreen(viewModel)
+                        SignUpScreen(viewModel, navController)
                     }
 
                     composable("profile") {
