@@ -1,4 +1,4 @@
-# Bosta-Task
+# Madarsoft-Task
 Simple app with 2 screens with clean arch and last tech in android     
 (First screen: purpose of it  : Takes user's name, age, job title and gender then saves those data on local db
 Second screen: purpose of it : Show saved data)
